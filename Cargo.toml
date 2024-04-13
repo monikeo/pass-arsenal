@@ -1,0 +1,33 @@
+[package]
+name = "ultimate-password-tool"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+adler = "1.0.2"
+base64 = "0.22.0"
+blake2 = "0.10.6"
+caesar_cipher = "0.1.1"
+clap = { version = "4.5.4", features = ["derive"] }
+crc32fast = "1.4.0"
+gost94 = "0.10.4"
+groestl = "0.10.1"
+linked-hash-map = "0.5.6"
+md-5 = "0.10.6"
+md2 = "0.10.2"
+md4 = "0.10.2"
+rayon = "1.10.0"
+rc4 = "0.1.0"
+ripemd = "0.1.3"
+sha1 = "0.10.6"
+sha2 = "0.10.8"
+sha3 = "0.10.8"
+shabal = "0.4.1"
+skein = "0.1.0"
+sm3 = "0.4.2"
+streebog = "0.10.2"
+tiger = "0.2.1"
+urlencoding = "2.1.3"
+whirlpool = "0.10.4"
