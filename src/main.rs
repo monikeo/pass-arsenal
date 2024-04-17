@@ -6,6 +6,16 @@ use ultimate_password_tool::{
 };
 
 use ultimate_password_tool::hashing::*;
+use ultimate_password_tool::PasswordStrength::PasswordStrengthCriteria::password_strength_criteria::*;
+fn test() {
+    let password = "ILoveYou";
+    let flag = pwned_password_exposure(password);
+    if flag {
+        println!("FOund");
+    } else {
+        println!("nono");
+    }
+}
 
 fn ultimate_encode(plain_text: &str) {
     todo!();
@@ -25,5 +35,6 @@ fn run() {
 }
 
 fn main() {
-    run();
+    test();
+    //run();
 }

@@ -21,28 +21,23 @@ pub mod password_strength_criteria {
                             content.split(':').map(|s| s.trim().to_string()).collect();
                         hashes.push((part[0].clone(), part[1].clone()));
                     }
-                    /*
-                    hashes = content
-                        .split('\n')
-                        .map(|line| line.split(':').map(|s| s.trim().to_string()))
-                        .collect::<Vec<(String, String)>>();
-                    */
                     println!("{}", contents);
-
-                    println!("{:?}", hashes);
+                    //println!("{:?}", hashes);
+                    let found = hashes
+                        .iter()
+                        .any(|(hash, _)| hash[..].to_lowercase() == password_sha1_hash[5..]);
+                    return found;
                 }
                 Err(_) => {
                     println!("Failed to extract content from response");
-                    return false;
                 }
             },
             Err(_) => {
                 println!("Checking internet connections...");
                 println!("Failed to connect to pwned api");
-                return false;
             }
         }
-        true
+        false
     }
 
     pub fn contains_uppercase_chars(password: &str) -> bool {
