@@ -1,10 +1,33 @@
 pub mod password_strength_criteria {
     use crate::Hash::Sha1;
+    use rayon::prelude::*;
     use reqwest;
     use std::collections::HashSet;
 
     pub fn is_common_password(password: &str) -> bool {
-        todo!();
+        let common_password_url = "https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/Common-Credentials/10-million-password-list-top-1000000.txt";
+        let response = reqwest::blocking::get(common_password_url);
+        match response {
+            Ok(body) => match body.text() {
+                Ok(content) => {
+                    let common_passwords: Vec<&str> = content.split('\n').collect();
+                    let status_password_check = common_passwords
+                        .par_iter()
+                        .any(|common_password| &password == common_password);
+                    return status_password_check;
+                    //println!("{:?}", &common_passwords[common_passwords.len() - 5..]);
+                }
+                Err(err) => {
+                    println!("[-] Error: Failed to extract content from HTML response");
+                    println!("[-] Error Status: {}", err);
+                }
+            },
+            Err(err) => {
+                println!("[-] Error: Something with url request");
+                println!("[-] Error Status: {}", err);
+            }
+        }
+        false
     }
 
     pub fn pwned_password_exposure(password: &str) -> bool {
@@ -21,20 +44,21 @@ pub mod password_strength_criteria {
                             content.split(':').map(|s| s.trim().to_string()).collect();
                         hashes.push((part[0].clone(), part[1].clone()));
                     }
-                    println!("{}", contents);
+                    //println!("{}", contents);
                     //println!("{:?}", hashes);
                     let found = hashes
                         .iter()
                         .any(|(hash, _)| hash[..].to_lowercase() == password_sha1_hash[5..]);
                     return found;
                 }
-                Err(_) => {
-                    println!("Failed to extract content from response");
+                Err(err) => {
+                    println!("[-] Error: Failed to extract content from response");
+                    println!("[-] Error Status: {}", err);
                 }
             },
-            Err(_) => {
-                println!("Checking internet connections...");
-                println!("Failed to connect to pwned api");
+            Err(err) => {
+                println!("[-] Error: Failed to connect to pwned api");
+                println!("[-] Error Status: {}", err);
             }
         }
         false
