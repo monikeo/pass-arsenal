@@ -81,7 +81,7 @@ pub mod password_strength_criteria {
     }
 
     // Define a function to check if a character is special
-    fn is_special_character(c: char) -> bool {
+    pub fn is_special_character(c: char) -> bool {
         match c {
             '!' | '@' | '#' | '$' | '%' | '^' | '&' | '*' | '(' | ')' | '_' | '+' | '-' | '='
             | '{' | '}' | '[' | ']' | '\\' | '|' | ';' | ':' | '\'' | '?' | ',' | '.' | '/'
