@@ -1,4 +1,4 @@
-use password_cracker_rs::Encode::Url::*;
+use ultimate_password_tool::Encode::Url::*;
 
 #[test]
 fn test_url_encode() {

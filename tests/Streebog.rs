@@ -1,4 +1,4 @@
-use password_cracker_rs::Hash::Streebog::*;
+use ultimate_password_tool::Hash::Streebog::*;
 
 #[test]
 fn test_streebog256() {

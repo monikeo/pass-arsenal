@@ -1,4 +1,4 @@
-use password_cracker_rs::Hash::Md2::*;
+use ultimate_password_tool::Hash::Md2::*;
 
 #[test]
 fn test_md2() {

@@ -1,4 +1,4 @@
-use password_cracker_rs::Hash::Md4::*;
+use ultimate_password_tool::Hash::Md4::*;
 
 #[test]
 fn test_md4() {

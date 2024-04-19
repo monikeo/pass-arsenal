@@ -1,4 +1,4 @@
-use password_cracker_rs::Hash::Gost94::*;
+use ultimate_password_tool::Hash::Gost94::*;
 
 #[test]
 fn test_gost94_crypto_pro() {

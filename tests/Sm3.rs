@@ -1,4 +1,4 @@
-use password_cracker_rs::Hash::Sm3::*;
+use ultimate_password_tool::Hash::Sm3::*;
 
 #[test]
 fn test_sm3() {

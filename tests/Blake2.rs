@@ -1,4 +1,4 @@
-use password_cracker_rs::Hash::Blake2::*;
+use ultimate_password_tool::Hash::Blake2::*;
 
 #[test]
 fn test_blake2s256() {

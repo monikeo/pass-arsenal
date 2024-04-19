@@ -1,4 +1,4 @@
-use password_cracker_rs::Hash::RipeMD::*;
+use ultimate_password_tool::Hash::RipeMD::*;
 
 #[test]
 fn test_ripemd128() {

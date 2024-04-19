@@ -1,4 +1,4 @@
-use password_cracker_rs::Hash::Shabal::*;
+use ultimate_password_tool::Hash::Shabal::*;
 
 #[test]
 fn test_shabal192() {

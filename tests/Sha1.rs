@@ -1,4 +1,4 @@
-use password_cracker_rs::Hash::Sha1::*;
+use ultimate_password_tool::Hash::Sha1::*;
 
 #[test]
 fn test_sha1() {

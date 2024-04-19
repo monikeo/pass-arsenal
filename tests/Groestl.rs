@@ -1,4 +1,4 @@
-use password_cracker_rs::Hash::Groestl::*;
+use ultimate_password_tool::Hash::Groestl::*;
 
 #[test]
 fn test_groestl224() {

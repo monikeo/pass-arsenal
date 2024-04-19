@@ -1,4 +1,4 @@
-use password_cracker_rs::Hash::Md5::*;
+use ultimate_password_tool::Hash::Md5::*;
 
 #[test]
 fn test_md5() {

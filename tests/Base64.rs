@@ -1,4 +1,4 @@
-use password_cracker_rs::Encode::Base64::*;
+use ultimate_password_tool::Encode::Base64::*;
 
 #[test]
 fn test_base64_encode() {

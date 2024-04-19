@@ -1,4 +1,4 @@
-use password_cracker_rs::Encode::MorseCode::*;
+use ultimate_password_tool::Encode::MorseCode::*;
 
 #[test]
 fn test_morse_code_encode() {

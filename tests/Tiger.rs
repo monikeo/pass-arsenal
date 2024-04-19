@@ -1,4 +1,4 @@
-use password_cracker_rs::Hash::Tiger::*;
+use ultimate_password_tool::Hash::Tiger::*;
 
 #[test]
 fn test_tiger() {
