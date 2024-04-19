@@ -2,14 +2,50 @@ use crate::PasswordStrength::PasswordStrengthCriteria::password_strength_criteri
 use std::collections::HashSet;
 
 pub fn evaluate_password_strength(password: &str) -> u32 {
-    let mut score = 0;
+    let score_password_length = evaluate_password_length(password);
+    let score_password_characters_diversity = evaluate_password_characters_diversity(password);
+    println!();
+    let score_password_common_pattern = evaluate_password_common_pattern(password);
+    let password_entropy = evaluate_password_entropy(password);
+    let score_password_entropy = match password_entropy {
+        0..=30 => 10,
+        31..=50 => 20,
+        51..=70 => 30,
+        _ => 40,
+    };
+    println!(" [] Password Entropy -> {}", password_entropy);
+
+    // max = 40, 50, 40, 40
+    let mut total_score = score_password_length
+        + score_password_characters_diversity
+        + score_password_common_pattern
+        + score_password_entropy;
+
+    let flag_common_password = is_common_password(password);
+    let flag_pwned_password_exposure = pwned_password_exposure(password);
+
+    if flag_common_password {
+        println!(" ❌ Found in 1 millions common password list");
+        total_score -= 60;
+    } else {
+        println!(" ✅ Not in 1 millions common password list");
+    }
+
+    if flag_pwned_password_exposure {
+        total_score -= 60;
+        println!(" ❌ Found in pwned password exposure list");
+    } else {
+        println!(" ✅ Not in pwned password exposure list");
+    }
+
+    let mut overall_score: f64 = total_score as f64 / 1.7;
 
     println!();
     println!("Analyzing password strength ... ");
-    if is_common_password(password) {
-        score = 10;
+    if overall_score < 0.0 {
+        overall_score = 0.0;
     }
-    score
+    overall_score as u32
 }
 
 pub fn evaluate_password_length(password: &str) -> u32 {
@@ -51,7 +87,7 @@ pub fn evaluate_password_common_pattern(password: &str) -> u32 {
     ];
 
     for (condition, label) in checks {
-        println!(" {} {}", if condition { " ✅ " } else { " V " }, label);
+        println!(" {} {}", if condition { " ✅ " } else { " ❌ " }, label);
         if condition {
             score += 10;
         }
@@ -91,7 +127,7 @@ pub fn evaluate_password_entropy(password: &str) -> u32 {
     let pool_size = number_pool + uppercase_pool + lowercase_pool + special_chars_pool;
     let password_length = password.len();
 
-    entropy = f64::log2(pool_size as f64 * password_length as f64);
+    entropy = f64::log2(pool_size as f64) * password_length as f64;
     entropy as u32
 }
 

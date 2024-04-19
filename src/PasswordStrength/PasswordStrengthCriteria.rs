@@ -4,8 +4,41 @@ pub mod password_strength_criteria {
     use reqwest;
     use std::collections::HashSet;
 
+    fn get_document_html(url: &str) -> Option<String> {
+        let response = reqwest::blocking::get(url);
+        match response {
+            Ok(body) => match body.text() {
+                Ok(content) => return Some(content),
+                Err(err) => {
+                    println!(" [-] Error: Failed to extract content from HTML response");
+                    println!(" [-] Error Status: {}", err);
+                }
+            },
+            Err(err) => {
+                println!(" [-] Error: Something wrong with URL request");
+                println!(" [-] Error Status: {}", err);
+            }
+        }
+        None
+    }
+
+    pub fn is_password_in_dictionary(password: &str) -> bool {
+        let english_dictionary_370k_url = "https://raw.githubusercontent.com/monikeo281000/data_set_collection/main/english_dictionary/english_words_dictionary_370k.txt";
+        let content = get_document_html(english_dictionary_370k_url);
+        match content {
+            Some(data) => {
+                let dictionary_words: Vec<&str> = data.split('\n').collect();
+                let status_dictionary_words_check =
+                    dictionary_words.par_iter().any(|word| &password == word);
+                return status_dictionary_words_check;
+            }
+            None => {}
+        }
+        false
+    }
+
     pub fn is_common_password(password: &str) -> bool {
-        let common_password_url = "https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/Common-Credentials/10-million-password-list-top-1000000.txt";
+        let common_password_url = "https://raw.githubusercontent.com/monikeo281000/data_set_collection/main/password/passwordlist-1million.txt";
         let response = reqwest::blocking::get(common_password_url);
         match response {
             Ok(body) => match body.text() {
@@ -105,11 +138,11 @@ pub mod password_strength_criteria {
     }
 
     // Define a function to check if a character is special
-    pub fn is_special_character(c: char) -> bool {
+    fn is_special_character(c: char) -> bool {
         match c {
             '!' | '@' | '#' | '$' | '%' | '^' | '&' | '*' | '(' | ')' | '_' | '+' | '-' | '='
             | '{' | '}' | '[' | ']' | '\\' | '|' | ';' | ':' | '\'' | '?' | ',' | '.' | '/'
-            | '<' | '>' => true,
+            | '<' | '>' | '`' | '~' | '"' => true,
             _ => false,
         }
     }
