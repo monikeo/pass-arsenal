@@ -1,4 +1,5 @@
 pub mod Adler;
+pub mod Ascon;
 pub mod Blake2;
 pub mod Crc32Fast;
 pub mod Gost94;
