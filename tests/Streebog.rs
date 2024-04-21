@@ -1,4 +1,4 @@
-use ultimate_password_tool::Hash::Streebog::*;
+use pass_arsenal::Hash::Streebog::*;
 
 #[test]
 fn test_streebog256() {

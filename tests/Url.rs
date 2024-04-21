@@ -1,4 +1,4 @@
-use ultimate_password_tool::Encode::Url::*;
+use pass_arsenal::Encode::Url::*;
 
 #[test]
 fn test_url_encode() {

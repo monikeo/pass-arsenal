@@ -1,4 +1,4 @@
-use ultimate_password_tool::Encode::CaesarCipher::*;
+use pass_arsenal::Encode::CaesarCipher::*;
 
 #[test]
 fn test_caesar_decode_custom_offset() {

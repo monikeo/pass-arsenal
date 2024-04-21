@@ -1,4 +1,4 @@
-use ultimate_password_tool::Hash::Tiger::*;
+use pass_arsenal::Hash::Tiger::*;
 
 #[test]
 fn test_tiger() {

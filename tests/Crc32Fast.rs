@@ -1,4 +1,4 @@
-use ultimate_password_tool::Hash::Crc32Fast::*;
+use pass_arsenal::Hash::Crc32Fast::*;
 
 #[test]
 fn test_crc32() {

@@ -1,5 +1,5 @@
 [package]
-name = "ultimate-password-tool"
+name = "pass-arsenal"
 version = "0.1.0"
 edition = "2021"
 
@@ -7,6 +7,7 @@ edition = "2021"
 
 [dependencies]
 adler = "1.0.2"
+ascon-hash = "0.2.0"
 base64 = "0.22.0"
 blake2 = "0.10.6"
 caesar_cipher = "0.1.1"
@@ -20,6 +21,7 @@ md2 = "0.10.2"
 md4 = "0.10.2"
 rayon = "1.10.0"
 rc4 = "0.1.0"
+reqwest = { version = "0.12.3", features = ["blocking"] }
 ripemd = "0.1.3"
 sha1 = "0.10.6"
 sha2 = "0.10.8"

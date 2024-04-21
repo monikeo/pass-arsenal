@@ -1,4 +1,4 @@
-use ultimate_password_tool::PasswordStrength::PasswordStrengthCriteria::*;
+use pass_arsenal::PasswordStrength::{PasswordStrengthCriteria::*, PasswordStrengthEvaluator::*};
 
 #[test]
 fn test_pwned_password_exposure() {
@@ -90,4 +90,56 @@ fn test_is_common_password() {
     assert!(result01);
     assert!(!result02);
     assert!(result03);
+}
+
+#[test]
+fn test_evaluate_password() {
+    let password01 = "ILoveYou";
+    let password02 = "iloveyou";
+    let password03 = "vjht008";
+    let password04 = "Rust@1234!2024Love#";
+
+    let result01 = evaluate_password_length(password01);
+    let result02 = evaluate_password_length(password02);
+    let result03 = evaluate_password_length(password03);
+    let result04 = evaluate_password_length(password04);
+    assert_eq!(result01, 20);
+    assert_eq!(result02, 20);
+    assert_eq!(result03, 20);
+    assert_eq!(result04, 40);
+
+    let result01 = evaluate_password_characters_diversity(password01);
+    let result02 = evaluate_password_characters_diversity(password02);
+    let result03 = evaluate_password_characters_diversity(password03);
+    let result04 = evaluate_password_characters_diversity(password04);
+    assert_eq!(result01, 30);
+    assert_eq!(result02, 30);
+    assert_eq!(result03, 20);
+    assert_eq!(result04, 40);
+
+    let password04 = "Rust@1234!Love#";
+    let result01 = evaluate_password_common_pattern(password01);
+    let result02 = evaluate_password_common_pattern(password02);
+    let result03 = evaluate_password_common_pattern(password03);
+    let result04 = evaluate_password_common_pattern(password04);
+    assert_eq!(result01, 30);
+    assert_eq!(result02, 20);
+    assert_eq!(result03, 30);
+    assert_eq!(result04, 50);
+}
+
+#[test]
+fn test_evaluate_password_entropy() {
+    let password01 = "ILoveYou";
+    let password02 = "iloveyou";
+    let password03 = "ILoveYou@2024";
+    let password04 = "Rust@1234!Love#";
+    let result01 = evaluate_password_entropy(password01);
+    let result02 = evaluate_password_entropy(password02);
+    let result03 = evaluate_password_entropy(password03);
+    let result04 = evaluate_password_entropy(password04);
+    assert_eq!(result01, 45);
+    assert_eq!(result02, 37);
+    assert_eq!(result03, 85);
+    assert_eq!(result04, 98);
 }

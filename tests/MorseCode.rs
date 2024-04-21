@@ -1,4 +1,4 @@
-use ultimate_password_tool::Encode::MorseCode::*;
+use pass_arsenal::Encode::MorseCode::*;
 
 #[test]
 fn test_morse_code_encode() {

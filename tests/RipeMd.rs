@@ -1,4 +1,4 @@
-use ultimate_password_tool::Hash::RipeMD::*;
+use pass_arsenal::Hash::RipeMD::*;
 
 #[test]
 fn test_ripemd128() {

@@ -1,4 +1,4 @@
-use ultimate_password_tool::Hash::Blake2::*;
+use pass_arsenal::Hash::Blake2::*;
 
 #[test]
 fn test_blake2s256() {

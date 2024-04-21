@@ -1,4 +1,4 @@
-use ultimate_password_tool::Hash::Groestl::*;
+use pass_arsenal::Hash::Groestl::*;
 
 #[test]
 fn test_groestl224() {

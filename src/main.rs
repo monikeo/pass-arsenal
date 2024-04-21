@@ -1,12 +1,12 @@
 use clap::Parser;
-use ultimate_password_tool::{
+use pass_arsenal::{
     Cli::{Args, SubCommands},
     Encode::{Base64, CaesarCipher, MorseCode, Url},
     Encryption,
 };
 
-use ultimate_password_tool::hashing::*;
-use ultimate_password_tool::PasswordStrength::PasswordStrengthCriteria::password_strength_criteria::*;
+use pass_arsenal::hashing::*;
+use pass_arsenal::PasswordStrength::PasswordStrengthCriteria::password_strength_criteria::*;
 fn test() {
     let password = "ILoveYou";
     let flag = pwned_password_exposure(password);

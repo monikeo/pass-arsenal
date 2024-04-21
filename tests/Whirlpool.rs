@@ -1,4 +1,4 @@
-use ultimate_password_tool::Hash::Whirlpool::*;
+use pass_arsenal::Hash::Whirlpool::*;
 
 #[test]
 fn test_whirlpool() {

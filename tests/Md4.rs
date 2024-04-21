@@ -1,4 +1,4 @@
-use ultimate_password_tool::Hash::Md4::*;
+use pass_arsenal::Hash::Md4::*;
 
 #[test]
 fn test_md4() {

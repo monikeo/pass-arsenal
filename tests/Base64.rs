@@ -1,4 +1,4 @@
-use ultimate_password_tool::Encode::Base64::*;
+use pass_arsenal::Encode::Base64::*;
 
 #[test]
 fn test_base64_encode() {

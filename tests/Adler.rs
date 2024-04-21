@@ -1,4 +1,4 @@
-use ultimate_password_tool::Hash::Adler::*;
+use pass_arsenal::Hash::Adler::*;
 #[test]
 fn test_adler32() {
     let plain_text = "ILoveYou";

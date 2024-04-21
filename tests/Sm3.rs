@@ -1,4 +1,4 @@
-use ultimate_password_tool::Hash::Sm3::*;
+use pass_arsenal::Hash::Sm3::*;
 
 #[test]
 fn test_sm3() {

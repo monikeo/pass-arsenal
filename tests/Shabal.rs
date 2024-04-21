@@ -1,4 +1,4 @@
-use ultimate_password_tool::Hash::Shabal::*;
+use pass_arsenal::Hash::Shabal::*;
 
 #[test]
 fn test_shabal192() {

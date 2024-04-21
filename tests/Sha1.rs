@@ -1,4 +1,4 @@
-use ultimate_password_tool::Hash::Sha1::*;
+use pass_arsenal::Hash::Sha1::*;
 
 #[test]
 fn test_sha1() {

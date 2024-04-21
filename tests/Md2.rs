@@ -1,4 +1,4 @@
-use ultimate_password_tool::Hash::Md2::*;
+use pass_arsenal::Hash::Md2::*;
 
 #[test]
 fn test_md2() {
